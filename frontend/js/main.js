@@ -9,23 +9,23 @@
 ==============================================================================*/
 
 
-(function ($) {
+(function($) {
     "use strict";
 
-    $(window).on('load', function () {
+    $(window).on('load', function() {
 
         /* 01. PreLoader Init
         ============================ */
         function preLoader() {
-            setTimeout(function () {
+            setTimeout(function() {
                 $('#preloader .scroll-static').addClass('loaded');
-                setTimeout(function () {
+                setTimeout(function() {
                     $('#preloader').addClass('loaded');
 
                     splitInit();
                     $('.loader__content').addClass('loaded');
 
-                    setTimeout(function () {
+                    setTimeout(function() {
                         $('#preloader').remove();
                     }, 400);
                 }, 600);
@@ -42,7 +42,7 @@
     });
 
 
-    $(document).ready(function () {
+    $(document).ready(function() {
 
         darkModeActive();
         menuInit();
@@ -55,16 +55,16 @@
 
         // 03. darkModeActive init
         function darkModeActive() {
-            if($.cookie("isDarkModeActive") == 1) {
+            if ($.cookie("isDarkModeActive") == 1) {
                 $("body").addClass("dark__mode");
             }
             $(".color__chooser_toggle").on('click', function() {
-                if($("body").hasClass("dark__mode") == true) {
+                if ($("body").hasClass("dark__mode") == true) {
                     $("body").removeClass("dark__mode");
-                    $.cookie("isDarkModeActive", "0", {expires: 365});
+                    $.cookie("isDarkModeActive", "0", { expires: 365 });
                 } else {
                     $("body").addClass("dark__mode");
-                    $.cookie("isDarkModeActive", "1", {expires: 365});
+                    $.cookie("isDarkModeActive", "1", { expires: 365 });
                 }
             });
         };
@@ -79,7 +79,7 @@
             });
 
             $('.submenu__wrap .nav__label_inner').siblings('.sub__menu.show').slideDown();
-            $('.submenu__wrap .nav__label_inner').on('click', function( e ) {
+            $('.submenu__wrap .nav__label_inner').on('click', function(e) {
                 e.preventDefault();
                 var $this = $(this).siblings('.sub__menu');
                 if ($this.hasClass('show')) {
@@ -93,19 +93,19 @@
 
         // 05. page transition init
         function pageTransition() {
-            $('a').not('[href="#"]').not('[href="#0"]').not('.ajax-popup-link').on('click', function (e) {
-                e.preventDefault();
-                var href = this.getAttribute('href');
+            $('a').not('[href="#"]').not('[href="#0"]').not('.ajax-popup-link').on('click', function(e) {
+                // e.preventDefault();
+                // var href = this.getAttribute('href');
                 $('body').addClass('page__tran');
                 setTimeout(function() {
                     window.location = href;
-                },510);
+                }, 510);
             });
         }
 
         // 06. reactJournal init
         function reactJournal() {
-            $('.react__btn').on('click', function(){
+            $('.react__btn').on('click', function() {
                 $(this).addClass('active');
             });
         };
@@ -113,14 +113,14 @@
         // 07. testimonialCarousel init
         function testimonialCarouselInit() {
             $('.owl-carousel.testimonials__carousel').owlCarousel({
-                nav:true,
-                loop:true,
-                dots:false,
+                nav: true,
+                loop: true,
+                dots: false,
                 navText: ["<span class='ti-angle-left'></span>", "<span class='ti-angle-right'></span>"],
-                items:1
+                items: 1
             });
-            $('.testimonials__carousel .owl-nav button').on('mouseenter',function(){$('.cursor').css('opacity','0')});
-            $('.testimonials__carousel .owl-nav button').on('mouseleave',function(){$('.cursor').css('opacity','.1')});
+            $('.testimonials__carousel .owl-nav button').on('mouseenter', function() { $('.cursor').css('opacity', '0') });
+            $('.testimonials__carousel .owl-nav button').on('mouseleave', function() { $('.cursor').css('opacity', '.1') });
         };
 
 
@@ -131,19 +131,19 @@
                 settings: null,
                 type: 'ajax',
                 closeOnContentClick: false,
-                closeBtnInside:false,
-                callbacks:{
+                closeBtnInside: false,
+                callbacks: {
                     ajaxContentAdded: function() {
-                      $(".mfp-content").find("*").addClass("mfp-prevent-close");
+                        $(".mfp-content").find("*").addClass("mfp-prevent-close");
                     }
-                 }
+                }
             });
         };
 
         /* 09. BackgroundImage Init
         ============================ */
         function bgImage() {
-            $('[data-bgi]').each(function () {
+            $('[data-bgi]').each(function() {
                 var src = $(this).attr('data-bgi');
                 $(this).css({
                     'background-image': 'url(' + src + ')'
