@@ -10,6 +10,7 @@ class Works(models.Model):
     client = models.CharField(max_length=255, null=True, blank=False)
     description = models.TextField()
     image = models.ImageField(upload_to='media/works/', null=True, blank=True)
+    is_published = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title

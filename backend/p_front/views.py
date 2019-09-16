@@ -1,5 +1,6 @@
 # from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, TemplateView
+from django.http import Http404, HttpResponseRedirect
 from .models import Works
 
 # Creating your views here.
@@ -11,7 +12,7 @@ class AboutView(TemplateView):
     template_name = 'about.html'
 
 
-class WorksList(ListView):
+class WorksListView(ListView):
     model = Works
     template_name = 'works.html'
     context_object_name = 'works_list'
@@ -24,3 +25,14 @@ class WorksList(ListView):
         context['worklists'] = self.model.objects.all()
         
         return context
+
+
+class WorksDetailView(DetailView):
+    model = Works
+    template_name = 'work-details.html'
+    context_object_name = 'works_details'
+    slug_field = 'role'
+    slug_url_kwarg = 'role'
+    
+    def get_queryset(self):
+        return self.model.objects.filter(is_published=True)
