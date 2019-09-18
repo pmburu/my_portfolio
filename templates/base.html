@@ -49,7 +49,9 @@
 
         <!-- breadcrumb text -->
         <div class="breadcrumb__text">
-            <span>Home</span>
+            {% if request.path == 'home' %}
+            <span>Home</span> {% elif request.path == 'about' %}
+            <span>About</span> {% endif %}
         </div>
     </div>
     <!-- end sidebar -->
@@ -72,7 +74,7 @@
                             <a href="journal.html" class="nav__label_inner slide-horizontal hbrable" data-splitting>Journal</a>
                         </div>
                         <div class="nav__label">
-                            <a href="contact.html" class="nav__label_inner slide-horizontal hbrable" data-splitting>Contact</a>
+                            <a href="{% url 'front:contact_us' %}" class="nav__label_inner slide-horizontal hbrable" data-splitting>Contact</a>
                         </div>
                     </div>
                 </div>

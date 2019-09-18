@@ -12,6 +12,10 @@ class AboutView(TemplateView):
     template_name = 'about.html'
 
 
+class ContactView(TemplateView):
+    template_name = 'contact.html'
+
+
 class WorksListView(ListView):
     model = Works
     template_name = 'works.html'
